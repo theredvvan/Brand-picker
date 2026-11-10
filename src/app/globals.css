@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f7f5;
+  --hover: #efefed;
+  --fg: #37352f;
+  --muted: #787774;
+  --faint: #a5a29a;
+  --line: #e9e9e7;
+  --accent: #2383e2;
+  --accent-fg: #ffffff;
+  --ok: #448361;
+  --ok-bg: #edf3ec;
+  --bad: #d44c47;
+  --bad-bg: #fdebec;
+  --warn-bg: #fbf3db;
+  --warn: #9f6b53;
+  --card-shadow: 0 1px 2px rgba(15, 15, 15, 0.04), 0 8px 24px rgba(15, 15, 15, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #191919;
+    --bg-soft: #202020;
+    --hover: #2a2a2a;
+    --fg: #e6e6e4;
+    --muted: #9b9b9b;
+    --faint: #6b6b6b;
+    --line: #2f2f2f;
+    --accent: #529cca;
+    --accent-fg: #ffffff;
+    --ok: #6aa984;
+    --ok-bg: #243328;
+    --bad: #e06c66;
+    --bad-bg: #3a2526;
+    --warn-bg: #3a3122;
+    --warn: #d3a77f;
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-soft: var(--bg-soft);
+  --color-hover: var(--hover);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-bad: var(--bad);
+  --color-bad-bg: var(--bad-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  box-shadow: var(--card-shadow);
+}
+
+.typeform-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--line);
+  padding: 6px 0 8px;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.typeform-input::placeholder {
+  color: var(--faint);
+}
+.typeform-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.cell-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 3px 6px;
+  outline: none;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.overlay-in {
+  animation: overlay-in 0.15s ease-out;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.pop-in {
+  animation: pop-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@keyframes check-draw {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+.check-draw {
+  stroke-dasharray: 24;
+  animation: check-draw 0.4s 0.15s ease-out backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay-in, .pop-in, .check-draw, .flash, .live-dot { animation: none; }
+}
+
+@keyframes flash {
+  from { background: var(--warn-bg); }
+  to { background: transparent; }
+}
+.flash {
+  animation: flash 2.4s ease-out;
+}
